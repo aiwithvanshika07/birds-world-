@@ -5,9 +5,6 @@ const dataFiles = [
   "data/extinct-birds.json"
 ];
 
-const fallbackImage =
-  "https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80";
-
 const birdGrid = document.getElementById("birdGrid");
 const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
@@ -23,9 +20,7 @@ async function loadBirdData() {
   try {
     const requests = dataFiles.map(file =>
       fetch(file).then(res => {
-        if (!res.ok) {
-          throw new Error(`Could not load ${file}`);
-        }
+        if (!res.ok) throw new Error(`Could not load ${file}`);
         return res.json();
       })
     );
@@ -46,16 +41,6 @@ async function loadBirdData() {
   }
 }
 
-function birdImageTag(bird) {
-  return `
-    <img 
-      src="${bird.image}" 
-      alt="${bird.name}"
-      onerror="this.onerror=null; this.src='${fallbackImage}';"
-    >
-  `;
-}
-
 function updateStats() {
   document.getElementById("totalCount").textContent = allBirds.length;
   document.getElementById("livingCount").textContent =
@@ -73,12 +58,9 @@ function displayBirdOfDay() {
 
   birdOfDay.innerHTML = `
     <div class="day-card">
-      ${birdImageTag(bird)}
-      <div>
-        <h3>${bird.name}</h3>
-        <p><em>${bird.scientific_name}</em></p>
-        <p>${bird.lifestyle}</p>
-      </div>
+      <h3>${bird.name}</h3>
+      <p><em>${bird.scientific_name}</em></p>
+      <p>${bird.lifestyle}</p>
     </div>
   `;
 }
@@ -97,25 +79,22 @@ function displayBirds(birds) {
     card.onclick = () => openModal(bird);
 
     card.innerHTML = `
-      ${birdImageTag(bird)}
-      <div class="card-content">
-        <span class="badge ${bird.status}">${bird.status}</span>
-        <span class="badge category">${bird.category}</span>
+      <span class="badge ${bird.status}">${bird.status}</span>
+      <span class="badge category">${bird.category}</span>
 
-        <h3>${bird.name}</h3>
-        <p class="scientific">${bird.scientific_name}</p>
+      <h3>${bird.name}</h3>
+      <p class="scientific">${bird.scientific_name}</p>
 
-        <p><strong>Region:</strong> ${bird.region}</p>
-        <p><strong>Habitat:</strong> ${bird.habitat}</p>
-        <p><strong>Diet:</strong> ${bird.diet}</p>
-        <p><strong>Lifestyle:</strong> ${bird.lifestyle}</p>
+      <p><strong>Region:</strong> ${bird.region}</p>
+      <p><strong>Habitat:</strong> ${bird.habitat}</p>
+      <p><strong>Diet:</strong> ${bird.diet}</p>
+      <p><strong>Lifestyle:</strong> ${bird.lifestyle}</p>
 
-        ${
-          bird.status === "Extinct"
-            ? `<div class="reason"><strong>Extinction Reason:</strong> ${bird.extinction_reason}</div>`
-            : ""
-        }
-      </div>
+      ${
+        bird.status === "Extinct"
+          ? `<div class="reason"><strong>Extinction Reason:</strong> ${bird.extinction_reason}</div>`
+          : ""
+      }
     `;
 
     birdGrid.appendChild(card);
@@ -149,7 +128,6 @@ function openModal(bird) {
   modal.style.display = "block";
 
   modalContent.innerHTML = `
-    ${birdImageTag(bird)}
     <div class="modal-info">
       <span class="badge ${bird.status}">${bird.status}</span>
       <span class="badge category">${bird.category}</span>
@@ -180,9 +158,7 @@ function closeModal() {
 }
 
 window.onclick = function(event) {
-  if (event.target === modal) {
-    closeModal();
-  }
+  if (event.target === modal) closeModal();
 };
 
 themeBtn.addEventListener("click", () => {
