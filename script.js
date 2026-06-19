@@ -3,6 +3,7 @@ const dataFiles = [
   "data/largest-birds.json",
   "data/common-birds.json",
   "data/extinct-birds.json"
+  "data/birds-of-india.json"
 ];
 
 const birdGrid = document.getElementById("birdGrid");
