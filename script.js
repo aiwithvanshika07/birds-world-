@@ -5,6 +5,9 @@ const dataFiles = [
   "data/extinct-birds.json"
 ];
 
+const fallbackImage =
+  "https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=800&q=80";
+
 const birdGrid = document.getElementById("birdGrid");
 const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
@@ -18,9 +21,16 @@ let allBirds = [];
 
 async function loadBirdData() {
   try {
-    const requests = dataFiles.map(file => fetch(file).then(res => res.json()));
-    const results = await Promise.all(requests);
+    const requests = dataFiles.map(file =>
+      fetch(file).then(res => {
+        if (!res.ok) {
+          throw new Error(`Could not load ${file}`);
+        }
+        return res.json();
+      })
+    );
 
+    const results = await Promise.all(requests);
     allBirds = results.flat();
 
     updateStats();
@@ -34,6 +44,16 @@ async function loadBirdData() {
     `;
     console.error(error);
   }
+}
+
+function birdImageTag(bird) {
+  return `
+    <img 
+      src="${bird.image}" 
+      alt="${bird.name}"
+      onerror="this.onerror=null; this.src='${fallbackImage}';"
+    >
+  `;
 }
 
 function updateStats() {
@@ -53,7 +73,7 @@ function displayBirdOfDay() {
 
   birdOfDay.innerHTML = `
     <div class="day-card">
-      <img src="${bird.image}" alt="${bird.name}">
+      ${birdImageTag(bird)}
       <div>
         <h3>${bird.name}</h3>
         <p><em>${bird.scientific_name}</em></p>
@@ -77,7 +97,7 @@ function displayBirds(birds) {
     card.onclick = () => openModal(bird);
 
     card.innerHTML = `
-      <img src="${bird.image}" alt="${bird.name}">
+      ${birdImageTag(bird)}
       <div class="card-content">
         <span class="badge ${bird.status}">${bird.status}</span>
         <span class="badge category">${bird.category}</span>
@@ -92,8 +112,8 @@ function displayBirds(birds) {
 
         ${
           bird.status === "Extinct"
-          ? `<div class="reason"><strong>Extinction Reason:</strong> ${bird.extinction_reason}</div>`
-          : ""
+            ? `<div class="reason"><strong>Extinction Reason:</strong> ${bird.extinction_reason}</div>`
+            : ""
         }
       </div>
     `;
@@ -129,7 +149,7 @@ function openModal(bird) {
   modal.style.display = "block";
 
   modalContent.innerHTML = `
-    <img src="${bird.image}" alt="${bird.name}">
+    ${birdImageTag(bird)}
     <div class="modal-info">
       <span class="badge ${bird.status}">${bird.status}</span>
       <span class="badge category">${bird.category}</span>
@@ -148,8 +168,8 @@ function openModal(bird) {
 
       ${
         bird.status === "Extinct"
-        ? `<div class="reason"><strong>Reason for Extinction:</strong> ${bird.extinction_reason}</div>`
-        : `<p><strong>Conservation:</strong> ${bird.conservation}</p>`
+          ? `<div class="reason"><strong>Reason for Extinction:</strong> ${bird.extinction_reason}</div>`
+          : `<p><strong>Conservation:</strong> ${bird.conservation}</p>`
       }
     </div>
   `;
