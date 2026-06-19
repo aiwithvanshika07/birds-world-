@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Bee Hummingbird",
+    "scientific_name": "Mellisuga helenae",
+    "status": "Living",
+    "category": "Smallest Birds",
+    "region": "Cuba",
+    "habitat": "Forest, gardens and woodland edges",
+    "size": "5-6 cm",
+    "wingspan": "Approx. 3-4 cm",
+    "diet": "Nectar and tiny insects",
+    "lifestyle": "The smallest bird in the world, famous for hovering flight and rapid wingbeats.",
+    "behavior": "Very active, territorial around flowers, and extremely fast-moving.",
+    "special_fact": "It is widely known as the smallest living bird species.",
+    "conservation": "Near Threatened",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bee_hummingbird_%28Mellisuga_helenae%29_adult_male.jpg/800px-Bee_hummingbird_%28Mellisuga_helenae%29_adult_male.jpg"
+  },
+  {
+    "name": "Costa's Hummingbird",
+    "scientific_name": "Calypte costae",
+    "status": "Living",
+    "category": "Smallest Birds",
+    "region": "Southwestern USA and Mexico",
+    "habitat": "Desert, scrubland and gardens",
+    "size": "7-9 cm",
+    "wingspan": "Approx. 11 cm",
+    "diet": "Nectar and tiny insects",
+    "lifestyle": "A tiny hummingbird adapted to dry desert environments.",
+    "behavior": "Fast, energetic, and known for dramatic courtship displays.",
+    "special_fact": "Males have a beautiful purple crown and throat.",
+    "conservation": "Least Concern",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Calypte_costae_male.jpg/800px-Calypte_costae_male.jpg"
+  }
+]
