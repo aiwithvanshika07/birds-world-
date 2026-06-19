@@ -10,6 +10,12 @@ const dataFiles = [
 "data/penguins.json"
 "data/birds-of-africa.json"
 "data/birds-of-australia.json"
+"data/birds-of-europe.json",
+  "data/birds-of-north-america.json",
+  "data/birds-of-south-america.json",
+  "data/hummingbirds.json",
+  "data/water-birds.json",
+  "data/rare-birds.json"
 ];
 
 const birdGrid = document.getElementById("birdGrid");
