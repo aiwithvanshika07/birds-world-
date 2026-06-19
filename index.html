@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birds of the World Encyclopedia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <nav>
+    <h2>🪽 Birds Encyclopedia</h2>
+    <button id="themeBtn">Light / Dark</button>
+  </nav>
+
+  <div class="hero-content">
+    <h1>Birds of the World</h1>
+    <p>
+      Explore living birds, extinct birds, habitats, lifestyles, behaviors,
+      and nature’s beautiful flying stories.
+    </p>
+    <a href="#explore">Start Exploring</a>
+  </div>
+</header>
+
+<section class="stats">
+  <div>
+    <h3 id="totalCount">0</h3>
+    <p>Total Birds</p>
+  </div>
+  <div>
+    <h3 id="livingCount">0</h3>
+    <p>Living Birds</p>
+  </div>
+  <div>
+    <h3 id="extinctCount">0</h3>
+    <p>Extinct Birds</p>
+  </div>
+</section>
+
+<section class="bird-day">
+  <h2>Bird of the Day</h2>
+  <div id="birdOfDay"></div>
+</section>
+
+<section class="controls" id="explore">
+  <input type="text" id="searchInput" placeholder="Search bird name, habitat, region..." />
+
+  <select id="categoryFilter">
+    <option value="all">All Categories</option>
+    <option value="Smallest Birds">Smallest Birds</option>
+    <option value="Largest Birds">Largest Birds</option>
+    <option value="Common Birds">Common Birds</option>
+    <option value="Extinct Birds">Extinct Birds</option>
+  </select>
+
+  <select id="statusFilter">
+    <option value="all">All Status</option>
+    <option value="Living">Living</option>
+    <option value="Extinct">Extinct</option>
+  </select>
+</section>
+
+<section class="bird-grid" id="birdGrid"></section>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Birds of the World Encyclopedia | Educational Project</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+  </html>
