@@ -9,6 +9,7 @@ const dataFiles = [
 "data/eagles.json"
 "data/penguins.json"
 "data/birds-of-africa.json"
+"data/birds-of-australia.json"
 ];
 
 const birdGrid = document.getElementById("birdGrid");
