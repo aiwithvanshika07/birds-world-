@@ -4,6 +4,7 @@ const dataFiles = [
   "data/common-birds.json",
   "data/extinct-birds.json"
   "data/birds-of-india.json"
+"data/parrots.json"
 ];
 
 const birdGrid = document.getElementById("birdGrid");
